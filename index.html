@@ -2,8 +2,7 @@
 <html>
   <head>
     <title>Pull Request Name Formatter</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
@@ -11,22 +10,19 @@
   <body>
     <div class="main-block">
       <div class="left-part">
-        <i class="fas fa-envelope"></i>
-        <i class="fas fa-at"></i>
-        <i class="fas fa-mail-bulk"></i>
+        <i class="fab fa-github"></i>
+        <i class="fab fa-git-alt"></i>
+        <i class="fas fa-code-branch"></i>
       </div>
       <form action="/">
-        <h1>PR Namer</h1>
-        <div class="info">
-          <input type="text" name="branch" placeholder="Branch Name">
-        </div>
-        
-        <button type="submit" href="/">Submit</button>
-        
-        <p>PR Name</p>
-        <div>
-          <input readonly type="text" name="pr" placeholder="PR Name">
-        </div>
+          <h1>PR Namer</h1>
+          <div class="info">
+              <input id="branchName" type="text" name="branch" placeholder="Branch Name">
+              <input id="prName" type="text" name="pr" placeholder="PR Name" readonly>
+          </div>
+
+          <button type="button" onclick="Calc()">Generate</button>
+
       </form>
     </div>
     
