@@ -1,39 +1,67 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const radioButtons = document.querySelectorAll('.radio-group input[type="radio"]');
+
+    radioButtons.forEach(radio => {
+        radio.addEventListener("click", function () {
+            if (this.checked) {
+                // Uncheck if clicking again (toggle behavior)
+                if (this.dataset.checked === "true") {
+                    this.checked = false;
+                    this.dataset.checked = "false";
+                } else {
+                    // Uncheck all other radios
+                    radioButtons.forEach(r => r.dataset.checked = "false");
+                    this.dataset.checked = "true";
+                }
+            }
+        });
+    });
+});
+
 function Calc() {
-    const branchName = document.getElementById("branchName");
+    const branchName = document.getElementById("branchName").value;
     const prName = document.getElementById("prName");
 
-    // Gets the first batch of consecutive digits
-    let ticketNumberPattern = /[0-9]+/;
-    let ticketNumber = branchName.value.match(ticketNumberPattern);
+    // Extract components from branch name: [Name]/[Type]/[IssueNo]-[Description]-[BranchName]
+    let branchPattern = /^[^/]+\/([^/]+)\/(\d+)-([^-]+)-(.+)$/;
+    let match = branchName.match(branchPattern);
 
-    // Matches a-z, A-Z after the dash (-)
-    let ticketDescPattern = /-([a-zA-Z]+)/;
-    let ticketDesc = branchName.value.match(ticketDescPattern);
-
-    if (ticketDesc == null) {
+    if (!match) {
         alert("Invalid Branch Name!");
         return;
     }
 
-    // Add spaces to the 2nd match
-    let SpacedDesc = ticketDesc[1].replace(/[A-Z]/g, ' $&').trim();
+    let branchType = match[1].toLowerCase(); // Type (e.g., bug, feature)
+    let ticketNumber = match[2]; // Issue Number
+    let rawDescription = match[3]; // Description (TitleCaseWords)
 
-    // Matches lowercase chars after 2nd dash (-)
-    let targetBranchPattern = /(-[a-zA-Z]+[-])([a-z]+)/;
-    let targetBranch = branchName.value.match(targetBranchPattern);
+    // Convert description to spaced words
+    let formattedDescription = rawDescription.replace(/([A-Z])/g, " $1").trim();
 
-    if (targetBranch == null) {
-        alert("Invalid Branch Name!");
-        return;
-    }
+    // PR Type Mapping
+    const typeMapping = {
+        "feature": "Feature",
+        "feat": "Feature",
+        "bug": "Bugfix",
+        "bugfix": "Bugfix",
+        "fix": "Bugfix",
+        "refactor": "Refactor",
+        "chore": "Chore",
+        "docs": "Docs",
+        "sql": "SQL",
+        "hotfix": "Hotfix",
+        "draft": "Draft"
+    };
 
-    if (targetBranch[2] == "master") {
-        targetBranch = "Master";
-    }
-    else if (targetBranch[2] == "uat") {
-        targetBranch = "UAT";
-    }
+    // Determine the default PR type
+    let defaultType = typeMapping[branchType] || "Feature";
 
-    prName.value = ticketNumber + " - " + SpacedDesc + " - " + targetBranch;
+    // Check if the user selected a radio button
+    let selectedType = document.querySelector('input[name="prType"]:checked');
+    let prType = selectedType ? selectedType.value : defaultType;
+
+    // Construct the new PR name
+    prName.value = `[${prType}] ${formattedDescription} (#${ticketNumber})`;
+
     console.log(prName.value);
 }

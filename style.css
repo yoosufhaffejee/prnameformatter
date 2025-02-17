@@ -31,15 +31,10 @@ form {
     margin: 25px;
     box-shadow: 0 2px 5px #f5f5f5;
     background: #f5f5f5;
+    border-radius: 10px;
 }
 
-.fas {
-    margin: 25px 10px 0;
-    font-size: 72px;
-    color: #fff;
-}
-
-.fab {
+.fas, .fab {
     margin: 25px 10px 0;
     font-size: 72px;
     color: #fff;
@@ -63,11 +58,42 @@ input, textarea {
     margin-bottom: 20px;
     border: 1px solid #1c87c9;
     outline: none;
+    border-radius: 5px;
 }
 
     input::placeholder {
         color: #666;
     }
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.radio-group label {
+    background: #f5f5f5;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #1c87c9;
+    transition: 0.3s ease-in-out;
+}
+
+.radio-group label:hover {
+    background: #1c87c9;
+    color: white;
+}
+
+.radio-group input {
+    display: none;
+}
+
+.radio-group input:checked + label {
+    background: #1c87c9;
+    color: white;
+}
 
 button {
     width: 100%;
@@ -77,6 +103,8 @@ button {
     font-size: 16px;
     font-weight: 400;
     color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
     button:hover {
@@ -86,7 +114,7 @@ button {
 @media (min-width: 568px) {
     .main-block {
         flex-direction: row;
-    }
+    }  
 
     .left-part, form {
         width: 50%;
@@ -106,4 +134,58 @@ button {
         margin-top: 2%;
         margin-left: 38%;
     }
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.radio-group label {
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #1c87c9;
+    transition: 0.3s ease-in-out;
+    background: #fff;
+}
+
+.radio-group input {
+    display: none;
+}
+
+.radio-group input:checked + label {
+    background: #1c87c9;
+    color: white;
+    font-weight: bold;
+}
+
+/* Branch format section */
+.branch-format {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.branch-format h2 {
+    font-size: 18px;
+    color: #1c87c9;
+}
+
+.branch-format p {
+    font-size: 14px;
+    color: #444;
+}
+
+.branch-format code {
+    font-weight: bold;
+    color: #d63384;
+    background: #eee;
+    padding: 2px 5px;
+    border-radius: 4px;
 }
