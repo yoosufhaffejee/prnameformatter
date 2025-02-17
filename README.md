@@ -47,7 +47,7 @@ Yoosuf/bug/1234-ServerSideFix-UAT
 4. Click **Generate** to update the PR name field.
 
 ## 📷 Screenshot
-![App Screenshot](../screenshot.png)
+![App Screenshot](https://raw.githubusercontent.com/yoosufhaffejee/prnameformatter/main/screenshot.png)
 
 ## 🤝 Contributing
 Feel free to fork and submit pull requests! Suggestions and improvements are welcome.
